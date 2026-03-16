@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Primary */
+    --color-midnight: #0A0E17;
+    --color-emerald: #0B4D3C;
+    
+    /* Accents */
+    --color-sahara: #C5A059;
+    
+    /* Neutral */
+    --color-alabaster: #FDFCFB;
+    --color-platinum: #8E8E93;
+    
+    /* Semantic */
+    --color-success: #28CD41;
+    --color-warning: #FFCC00;
+    --color-error: #FF3B30;
+    --color-info: #007AFF;
+
+    /* Animation */
+    --ease-apple: cubic-bezier(0.32, 0.72, 0, 1);
+    --duration-micro: 150ms;
+    --duration-transition: 400ms;
+  }
+
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--color-midnight);
+    background-color: var(--color-alabaster);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: var(--color-sahara);
+    color: var(--color-midnight);
+  }
+
+  /* Focus ring — Sahara Gold per design system */
+  *:focus-visible {
+    outline: 3px solid var(--color-sahara);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* Container */
+  .container-main {
+    @apply w-full max-w-container mx-auto px-4 md:px-8 lg:px-8x;
+  }
+
+  /* Section spacing */
+  .section-spacing {
+    @apply py-12x md:py-16x;
+  }
+
+  /* Button base */
+  .btn {
+    @apply inline-flex items-center justify-center font-sans font-medium
+           transition-all duration-200 ease-apple
+           min-h-[44px] min-w-[44px]
+           focus-visible:outline-[3px] focus-visible:outline-sahara focus-visible:outline-offset-2;
+  }
+
+  .btn:hover {
+    transform: scale(1.02);
+  }
+
+  .btn:active {
+    transform: scale(0.98);
+  }
+
+  .btn:disabled {
+    @apply opacity-40 cursor-not-allowed;
+    transform: none;
+  }
+
+  /* Primary Button — Sahara Gold capsule */
+  .btn-primary {
+    @apply btn bg-sahara text-midnight rounded-capsule
+           px-6x py-2x text-body font-semibold
+           hover:brightness-110 active:brightness-95;
+  }
+
+  /* Secondary Button — Outlined */
+  .btn-secondary {
+    @apply btn bg-transparent border border-platinum text-midnight rounded-capsule
+           px-6x py-2x text-body
+           hover:border-sahara hover:text-sahara;
+  }
+
+  /* Ghost Button */
+  .btn-ghost {
+    @apply btn bg-transparent text-midnight rounded-button
+           px-3x py-1x text-body
+           hover:text-sahara;
+  }
+
+  /* Overline text */
+  .overline {
+    @apply text-overline uppercase tracking-[0.04em] font-bold text-platinum;
+  }
+
+  /* Card */
+  .card {
+    @apply bg-white rounded-card shadow-card 
+           transition-all duration-300 ease-apple;
+  }
+
+  .card:hover {
+    @apply shadow-card-hover;
+    transform: translateY(-4px);
+  }
+
+  /* Glassmorphism (Navbar) */
+  .glass {
+    @apply bg-alabaster/80 backdrop-blur-xl border-b border-midnight/5;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar but allow scrolling */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Minimum height for touch targets */
+  .min-h-touch {
+    min-height: 44px;
+  }
+  .min-w-touch {
+    min-width: 44px;
+  }
+}
